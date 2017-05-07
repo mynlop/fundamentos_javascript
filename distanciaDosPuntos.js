@@ -1,10 +1,14 @@
 const p1 = {
 	x: 0,
-	y: 4
+	y: 4,
+	moverEnX(x){ this.x += x },
+	moverEnY(y){ this.y += y }
 }
 const p2 = {
 	x: 3,
-	y: 0
+	y: 0,
+	moverEnX(x){ this.x += x },
+	moverEnY(y){ this.y += y }
 }
 
 function distancia(p1,p2){
