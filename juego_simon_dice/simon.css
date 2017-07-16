@@ -1,0 +1,38 @@
+body{
+    background: black;
+    color: white;
+    font-family: 'Monserrat', sans-serif;
+}
+
+.keyboard{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    /* margin: 0 auto; */
+    width: 100%;
+    justify-content: center;
+}
+
+.key{
+    animation: appear 2.5s;
+    min-width: 80px;
+    padding: 36px 10px;
+    border: 4px solid white;
+    border-radius: 10px;
+    margin: 0 11px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 18px;
+    transition: all ease 0.5s;
+    margin: 10px;
+}
+
+.key.active{
+    background-color: white;
+    color: white;
+    border-color: #e74c3c;
+}
