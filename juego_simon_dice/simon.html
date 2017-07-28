@@ -22,15 +22,15 @@
             <div class="key" data-key="80">p</div>
         <!-- </div>
         <div class="row"> -->
-            <div class="key" data-key="">a</div>
-            <div class="key" data-key="">s</div>
-            <div class="key" data-key="">d</div>
-            <div class="key" data-key="">f</div>
-            <div class="key" data-key="">g</div>
-            <div class="key" data-key="">h</div>
-            <div class="key" data-key="">j</div>
-            <div class="key" data-key="">k</div>
-            <div class="key" data-key="">l</div>
+            <div class="key" data-key="65">a</div>
+            <div class="key" data-key="83">s</div>
+            <div class="key" data-key="68">d</div>
+            <div class="key" data-key="70">f</div>
+            <div class="key" data-key="71">g</div>
+            <div class="key" data-key="72">h</div>
+            <div class="key" data-key="74">j</div>
+            <div class="key" data-key="75">k</div>
+            <div class="key" data-key="76">l</div>
         <!-- </div>
         <div class="row last"> -->
             <div class="key" data-key="90">z</div>
@@ -42,5 +42,40 @@
             <div class="key" data-key="77">m</div>
         </div>
     </div>
+    <script>
+        const niveles = 15
+        let keys = generateKeys(niveles)
+
+
+        function generateKeys(niveles){
+            return new Array(niveles).map(generarTeclaAleatoria)
+        }
+
+        function generarTeclaAleatoria(){
+            const min = 65
+            const max = 90
+            return Math.round(Math.random() * (max - min) + min)
+        }
+
+        function getElementByKeyCoode(keyCode){
+            return document.querySelector(`[data-key="${keyCode}"]`)
+        }
+
+        function activate(keyCode, opts = {}){
+            const el = getElementByKeyCoode(keyCode)
+            el.classList.add('active')
+            if(opts.success){
+                el.classList.add('success')
+            }else if(opts.fail){
+                el.classList.add('fail')
+            }
+            setTimeout(() => desactivate(el), 500)
+        }
+
+        function desactivate(el){
+            el.className = 'key'
+        }
+
+    </script>
 </body>
 </html>

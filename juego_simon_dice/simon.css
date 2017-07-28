@@ -33,6 +33,18 @@ body{
 
 .key.active{
     background-color: white;
+    color: black;
+    border-color: #e74c3c;
+}
+
+.key.active.success{
+    background-color: #2ecc71;
+    color: white;
+    border-color: #2ecc71;
+}
+
+.key.active.fail{
+    background-color: #e74c3c;
     color: white;
     border-color: #e74c3c;
 }
