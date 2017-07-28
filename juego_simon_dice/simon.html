@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Simon dice...</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.6/sweetalert2.css">
     <link rel="stylesheet" href="simon.css">
 </head>
 <body>
@@ -42,15 +43,24 @@
             <div class="key" data-key="77">m</div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.6/sweetalert2.js"></script>
     <script>
         const niveles = 15
         let teclas = generateKeys(niveles)
 
         function siguienteNivel(nivelActual){
             if(nivelActual == niveles){
-                return alert('Ganaste')
+                return swal({
+                    title: 'Ganaste!',
+                    type: 'success'
+                })
             }
-            alert(`Nivel ${nivelActual + 1}`)
+            swal({
+                title: `Nivel ${nivelActual + 1}`,
+                showConfirmButton: false,
+                timer: 1000
+            })
+            
             for(let i = 0; i <= nivelActual; i++){
                 setTimeout(() => activate(teclas[i] ), 1000 *(i + 1))
             }
@@ -71,7 +81,18 @@
                 }else{
                     activate(ev.keyCode, {fail: true})
                     window.removeEventListener('keydown',onKeyDown)
-                    alert("Perdiste!")
+                    swal({
+                        title: 'Perdiste!!!',
+                        text: 'Quieres jugar de nuevo?',
+                        showCancelButton: true,
+                        confirmButtonText: 'Si',
+                        cancelButtonText: 'No'
+                    }).then(function(ok){
+                        if(ok){
+                            teclas = generateKeys(niveles)
+                            siguienteNivel(0)
+                        }
+                    })
                 }
             }
         }
