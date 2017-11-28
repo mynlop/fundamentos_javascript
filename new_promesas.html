@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Elimnar callback por promesas</title>
+</head>
+<body>
+	<h1 id="agenda">Estoy despertando</h1>
+	<script>
+		const DESPERTAR = 3000
+		const DUCHA = 2000
+		const VESTIRSE = 2000
+		const PLATZI = 5000
+		const agenda = document.getElementById('agenda')
+
+		// const despertar = new Promise((todo esta bien, todo esta mal)=>{})
+		// despertar.then(que quiero hacer si todo está bien)
+		// despertar.catch(que quiero hacer si todo está mal)
+		
+		function despertar() {
+			return new Promise((resolve,reject)=>{
+				setTimeout(()=>{
+					resolve('ahora me estoy levantando...')
+				}, DESPERTAR)
+			})
+		}
+
+		function ducha(message){
+			agenda.textContent = message
+			return new Promise((resolve, reject)=>{
+				setTimeout(()=>{
+					resolve('me estoy duchando...')
+				}, DUCHA)
+			})
+		}
+
+		function vestirme(message){
+			agenda.textContent = message
+			return new Promise((resolve, reject)=>{
+				setTimeout(()=>{
+					resolve('me estoy vistiendo...')
+				}, VESTIRSE)
+			})
+		}
+
+		function desayunar(message){
+			agenda.textContent = message
+			return new Promise((resolve, reject)=>{
+				setTimeout(()=>{
+					// resolve('estoy desayunando ...')
+					reject('no hay comida')
+				})
+			})
+		}
+
+		function error(message){
+			agenda.style.color = 'red'
+			agenda.textContent = message
+		}
+
+		despertar()
+		.then(ducha)
+		.then(vestirme)
+		.then(desayunar)
+		.catch(error)
+	</script>
+</body>
+</html>
