@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>setInterval</title>
+</head>
+<body>
+	<h1 id="timer">Han pasado 0 segundos</h1>
+	<script>
+		// setInterval(que voy hacer?, en cueanto tiempo debo hacerlo)
+		const timer = document.getElementById('timer')
+		let counter = 0
+		let palabra = 'segundo'
+		setInterval(()=>{
+			// console.log('ha pasado 1 segundo')
+			if(counter == 0)
+				palabra = 'segundo'
+			else
+				palabra = 'segundos'
+
+			counter++
+			timer.textContent = `Han pasado ${counter} ${palabra}`
+		}, 1000)
+	</script>
+</body>
+</html>
